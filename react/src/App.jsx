@@ -5,15 +5,14 @@ import {
   Routes,
   Link
 } from "react-router-dom";
-// import { AuthProvider } from "./hooks/AuthContext";
 import React, { useState, useEffect } from "react";
 
-// // Components
-// import LoginForm from "./components/LoginForm";
-// import WelcomePage from "./components/WelcomePage";
-// import Search from "./components/Search";
-// import SearchResults from "./components/SearchResults";
-// import EmployeeResult from "./components/EmployeeResult";
+//  Components
+ import LoginForm from "./components/LoginForm";
+import WelcomePage from "./components/WelcomePage";
+import Search from "./components/Search";
+import SearchResults from "./components/SearchResults";
+import EmployeeResult from "./components/EmployeeResult";
 
 
 import './App.css'
