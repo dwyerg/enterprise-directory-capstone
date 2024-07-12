@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-//  Components
- import LoginForm from "./components/LoginForm";
+// Components
+import LoginForm from "./components/LoginForm";
 import WelcomePage from "./components/WelcomePage";
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
@@ -20,7 +20,32 @@ import './App.css'
 function App() {
 
   return (
-    <h1>Searchable Enterprise Directory</h1>
+    <Router>
+      <>
+      <h1>Enterprise Directory</h1>
+        
+
+        <Routes>
+          <Route 
+            exact path="/" 
+            element={<LoginForm />} />
+
+          <Route 
+            path="/welcome-page" 
+            element={<WelcomePage />} />
+
+          <Route 
+            path="/search-results" 
+            element={<SearchResults />} />
+
+          <Route 
+            path="/employee-result" 
+            element={<EmployeeResult />} />
+          
+          </Routes>
+      
+      </>
+    </Router>
   )
 }
 
