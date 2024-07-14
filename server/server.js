@@ -38,10 +38,15 @@ app.post('/search', async (req, res) => {
 // app.get for employee (employee/:id)
 app.get('/employee/:id', async (req, res) => {
     const { id } = req.params;
+    console.log(id);
+    const dbId = id.toString();
 
     try {
-        const collection = db.collection('employees');
-        const result = await collection.findOne({ _id: ObjectId(id) });
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+
+        const collection = db.collection(collectionName);
+        const result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
 
         if (!result) {
             return res.status(404).json({ message: 'Employee not found' });

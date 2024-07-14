@@ -47,7 +47,7 @@ function App() {
               element={<SearchResults />} />
 
             <Route 
-              path="/employee-result" 
+              path="/employee/:id" 
               element={<EmployeeResult />} />
             
             </Routes>
