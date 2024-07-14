@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Search from './Search';
 
 function WelcomePage() {
-  return (
-    <> 
 
+  return (
+    <div> 
         <h2>Welcome Employee</h2>
         <Search />
-    </>
+        <br />
+    </div>
   );
 };
 
