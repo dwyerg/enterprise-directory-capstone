@@ -3,6 +3,7 @@ import { promises as fs } from 'fs';
 import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { log } from 'console';
 
 dotenv.config();
 const url = process.env.MONGO_DB_URL;
@@ -15,19 +16,19 @@ app.use(express.json()); // Middleware to parse JSON bodies
 const PORT = 3000;
 
 // Middleware to validate user role and ID
-const validateUser = (req, res, next) => {
-    const { UserRole, UserId } = req.headers;
+// const validateUser = (req, res, next) => {
+//     const { UserRole, UserId } = req.headers;
 
-    if (!UserRole || !UserId) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+//     if (!UserRole || !UserId) {
+//         return res.status(401).json({ message: 'Unauthorized' });
+//     }
 
-    // You can add additional logic to validate user permissions here
-    // For example, check if the user has the right permissions to access employee data
+//     // You can add additional logic to validate user permissions here
+//     // For example, check if the user has the right permissions to access employee data
 
-    req.user = { role: UserRole, _id: UserId }; // Attach user role and ID to request object
-    next();
-};
+//     req.user = { role: UserRole, _id: UserId }; // Attach user role and ID to request object
+//     next();
+// };
 
 
 // app.post for login
@@ -103,75 +104,99 @@ app.post('/search', async (req, res) => {
 
 
 // app.get for employee (employee/:id)
+// app.get('/employee/:id', async (req, res) => {
+//     const { id } = req.params;
+//     console.log(id);
+//     const dbId = id.toString();
+
+//     try {
+//         const client = await MongoClient.connect(url);
+//         const db = client.db(dbName);
+
+//         const collection = db.collection(collectionName);
+//         const result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
+
+//         if (!result) {
+//             return res.status(404).json({ message: 'Employee not found' });
+//         }
+
+//         res.json(result);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: 'Internal Server Error' });
+//     }
+// });
+
+// Middleware to validate user role before accessing employee details
+// GET endpoint for fetching employee details by ID
 app.get('/employee/:id', async (req, res) => {
     const { id } = req.params;
-    console.log(id);
-    const dbId = id.toString();
+    const userRole = req.headers['userrole'];
+    const userId = req.headers['userid'];
 
     try {
         const client = await MongoClient.connect(url);
         const db = client.db(dbName);
-
         const collection = db.collection(collectionName);
-        const result = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
+        const employee = await collection.findOne({ _id: id });
 
-        if (!result) {
+        console.log('Employee ID:', employee._id.toString());
+        console.log('User ID:', userId);
+
+        if (!employee) {
             return res.status(404).json({ message: 'Employee not found' });
         }
 
-        res.json(result);
+        // Check user role and permissions before sending employee details
+        if (userRole === 'hr') {
+            // HR can see everyone's details, including salary
+            return res.json(employee);
+        } else if (userRole === 'manager') {
+            // Manager can see their own employees' details, including salary
+            if (employee.manager_id === userId) {
+                return res.json(employee);
+            } else {
+                // Manager can't see other employees' salaries
+                return res.json({
+                    ...employee,
+                    salary: undefined // Hide salary for other employees
+                });
+            }
+        } else { // Assuming 'employee' role
+            // Employee can only see their own details, including salary
+            if (employee._id.toString() === userId) {
+                return res.json(employee);
+            } else {
+                // Employee can't see other employees' salaries
+                return res.json({
+                    ...employee,
+                    salary: undefined // Hide salary for other employees
+                });
+            }
+        }
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
-// Middleware to validate user role before accessing employee details
-// GET endpoint for fetching employee details by ID
-// app.get('/employee/:id', validateUser, async (req, res) => {
-//     const { id } = req.params;
+// app.get for managers to view their employees
+app.get('/employees', async (req, res) => {
+    const { managerId } = req.query;
 
-//     try {
-//         const client = await MongoClient.connect(url);
-//         const db = client.db(dbName);
-//         const collection = db.collection(collectionName);
-//         const employee = await collection.findOne({ _id: ObjectId.createFromHexString(id) });
+    try {
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        
+        const employees = await collection.find({ manager_id: managerId }).toArray();
+        res.json(employees);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
-//         if (!employee) {
-//             return res.status(404).json({ message: 'Employee not found' });
-//         }
-
-//         // Check user role and permissions before sending employee details
-//         if (req.user.role === 'hr') {
-//             // HR can see everyone's details, including salary
-//             return res.json(employee);
-//         } else if (req.user.role === 'manager') {
-//             // Manager can see their own employees' details, including salary
-//             if (employee.manager_id === req.user._id.toString()) {
-//                 return res.json(employee);
-//             } else {
-//                 // Manager can't see other employees' salaries
-//                 return res.json({
-//                     ...employee,
-//                     salary: undefined // Hide salary for other employees
-//                 });
-//             }
-//         } else { // Assuming 'employee' role
-//             // Employee can only see their own details, without their salary
-//             if (employee._id.toString() === req.user._id) {
-//                 return res.json({
-//                     ...employee,
-//                     salary: undefined // Hide salary for own details
-//                 });
-//             } else {
-//                 return res.status(403).json({ message: 'Unauthorized to access this resource' });
-//             }
-//         }
-//     } catch (err) {
-//         console.error(err);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
 
 // // GET endpoint for fetching employee details by ID
 // app.get('/employee/:id', validateUser, async (req, res) => {

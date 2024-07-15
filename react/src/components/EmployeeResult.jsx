@@ -10,8 +10,8 @@ import EmployeeView from './EmployeeView';
 function EmployeeResult() {
     const { id } = useParams();
     const [employee, setEmployee] = useState(null);
-    const userRole = useSelector(state => state.user.role); // Example: Getting user role from Redux store
-    const userId = useSelector(state => state.user.user._id); // Assuming '_id' is the user ID field in Redux
+    const userRole = useSelector(state => state.user.user.roles); // Example: Getting user role from Redux store
+    const userId = useSelector(state => state.user.user._id); // Might need to change as DB changes
 
 
     function formatPhoneNumber(phoneNumber) {
@@ -47,7 +47,8 @@ function EmployeeResult() {
                       'UserId': userId, // Include user ID in headers
                   },
                 });
-
+                console.log(userRole);
+                console.log(userId);
                 if (!response.ok) {
                     throw new Error('Failed to fetch employee');
                 }
@@ -82,9 +83,11 @@ function EmployeeResult() {
             <div>
                 <strong>Work Location: </strong>{employee.work_location}
             </div>
+            {employee.salary !== undefined && (
             <div>
                 <strong>Salary: </strong>{formattedSalary}
             </div>
+        )}
             {/* {userRole === 'Manager' && <ManagerView employee={employee} />}
             {userRole !== 'Manager' && <EmployeeView employee={employee} />} */}
         </div>

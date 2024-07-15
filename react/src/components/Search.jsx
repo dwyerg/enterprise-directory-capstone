@@ -22,6 +22,10 @@ const Search = () => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
+
+            // Save search results to local storage
+            localStorage.setItem('searchResults', JSON.stringify(data));
+
             dispatch({ type: 'SET_SEARCH_RESULTS', payload: data });
             console.log(data);
         } catch (error) {

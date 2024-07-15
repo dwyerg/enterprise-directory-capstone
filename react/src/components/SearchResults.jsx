@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     BrowserRouter as Router,
     Route,
@@ -12,6 +12,17 @@ import {
 function SearchResults() {
 
     const searchResults = useSelector(state => state.search.searchResults);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // Retrieve search results from local storage
+        const storedResults = localStorage.getItem('searchResults');
+        if (storedResults) {
+            const parsedResults = JSON.parse(storedResults);
+            dispatch({ type: 'SET_SEARCH_RESULTS', payload: parsedResults });
+        }
+    }, [dispatch]);
+
     console.log([searchResults]);
     if (!searchResults || searchResults.length === 0) {
         return <div>No results found.</div>;
