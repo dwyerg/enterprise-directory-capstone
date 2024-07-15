@@ -20,6 +20,7 @@ import EmployeeResult from "./components/EmployeeResult";
 
 
 import './App.css'
+import PredictForm from "./components/Predict";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <>
+        <button type="submit" className="btn btn-primary">Salary Predictor</button>
         <h1>Enterprise Directory</h1>
           
           <Routes>
@@ -37,6 +39,10 @@ function App() {
             <Route 
               path="/welcome-page" 
               element={<WelcomePage />} />
+
+            <Route 
+              path="/predict" 
+              element={<PredictForm />} />
 
             <Route 
               path="/search" 
