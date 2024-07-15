@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 const PredictForm = () => {
     const [role, setRole] = useState('');
     const [location, setLocation] = useState('');
+    const [predictedSalary, setPredictedSalary] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/predict', {
+            const response = await fetch('http://127.0.0.1:5000/api/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,7 +22,8 @@ const PredictForm = () => {
             }
 
             const data = await response.json();
-            console.log('Salary Predicted:', data);
+            console.log('Salary Predicted:', data[0]);
+            setPredictedSalary(data[0]);
         } catch (error) {
             console.error('Error creating job:', error);
         }
@@ -51,6 +53,12 @@ const PredictForm = () => {
                 </div>
                 <button type="submit">Predict Salary</button>
             </form>
+            {predictedSalary !== null && (
+                <div>
+                    <h3>Predicted Salary:</h3>
+                    <p>${predictedSalary}</p> {/* Display predicted salary here */}
+                </div>
+            )}
         </div>
     );
 };

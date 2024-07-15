@@ -28,7 +28,11 @@ function App() {
     <Provider store={store}>
       <Router>
         <>
-        <button type="submit" className="btn btn-primary">Salary Predictor</button>
+        <Link to="/predict">
+            <button type="button" className="btn btn-primary">
+              Salary Predictor
+            </button>
+        </Link>
         <h1>Enterprise Directory</h1>
           
           <Routes>
