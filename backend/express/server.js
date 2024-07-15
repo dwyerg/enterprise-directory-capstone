@@ -18,7 +18,7 @@ const PORT = 3000;
 
 // app.get for employee (employee/:id)
 
-app.post('/api/jobs', (req, res) => {
+app.post('/api/predict', (req, res) => {
     try {
         // Extract 'role' and 'location' from request body
         const { role, location } = req.body;

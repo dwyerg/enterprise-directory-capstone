@@ -8,7 +8,7 @@ const PredictForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/jobs', {
+            const response = await fetch('/api/predict', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
