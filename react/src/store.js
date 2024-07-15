@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-// import thunk from 'redux-thunk'; // Example of middleware (if needed)
 import searchReducer from './reducers/searchReducer'
+import userReducer from './reducers/userReducer';
 
 // Middleware array (if needed)
 
@@ -9,6 +9,7 @@ import searchReducer from './reducers/searchReducer'
 const store = configureStore({
     reducer: {
         search: searchReducer,
+        user: userReducer,
 
     }
 });

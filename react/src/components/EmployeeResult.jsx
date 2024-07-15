@@ -1,9 +1,18 @@
+// React
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+// Components
+import ManagerView from './ManagerView';
+import EmployeeView from './EmployeeView';
 
 function EmployeeResult() {
     const { id } = useParams();
     const [employee, setEmployee] = useState(null);
+    const userRole = useSelector(state => state.user.role); // Example: Getting user role from Redux store
+    const userId = useSelector(state => state.user.user._id); // Assuming '_id' is the user ID field in Redux
+
 
     function formatPhoneNumber(phoneNumber) {
       // Remove any non-digit characters
@@ -30,7 +39,15 @@ function EmployeeResult() {
         // Fetch employee details based on id
         const fetchEmployee = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/employee/${id}`);
+                const response = await fetch(`http://localhost:3000/employee/${id}`, {
+                  method: 'GET',
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'UserRole': userRole, // Include user role in headers
+                      'UserId': userId, // Include user ID in headers
+                  },
+                });
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch employee');
                 }
@@ -42,17 +59,15 @@ function EmployeeResult() {
         };
 
         fetchEmployee();
-    }, [id]);
+    }, [id, userRole, userId]);
 
     if (!employee) {
         return <div>Loading...</div>
     }
+  
 
     const formattedPhoneNumber = formatPhoneNumber(employee.phone);
     const formattedSalary = formatSalary(employee.salary);
-    console.log(employee.salary);
-    console.log(formattedSalary);
-
 
     return (
         <div>
@@ -70,6 +85,8 @@ function EmployeeResult() {
             <div>
                 <strong>Salary: </strong>{formattedSalary}
             </div>
+            {/* {userRole === 'Manager' && <ManagerView employee={employee} />}
+            {userRole !== 'Manager' && <EmployeeView employee={employee} />} */}
         </div>
     );
 }
