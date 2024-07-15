@@ -21,6 +21,7 @@ import ViewEmployees from "./components/ViewEmployees"
 
 
 import './App.css'
+import PredictForm from "./components/Predict";
 
 function App() {
 
@@ -28,6 +29,11 @@ function App() {
     <Provider store={store}>
       <Router>
         <>
+        <Link to="/predict">
+            <button type="button" className="btn btn-primary">
+              Salary Predictor
+            </button>
+        </Link>
         <h1>Enterprise Directory</h1>
           
           <Routes>
@@ -42,6 +48,10 @@ function App() {
             <Route 
               path="/view-employees" 
               element={<ViewEmployees />} />
+                
+            <Route 
+              path="/predict" 
+              element={<PredictForm />} />
 
             <Route 
               path="/search" 
