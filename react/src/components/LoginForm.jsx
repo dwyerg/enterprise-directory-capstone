@@ -1,26 +1,40 @@
+// React imports
 import React, {useState} from 'react';
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-    Link
-  } from "react-router-dom";
-
-// import { useAuth } from '../hooks/AuthContext';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+// Reducer imports
+import { setUser } from '../reducers/userReducer';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    // const { login } = useAuth();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        // await login(username, password);
-        console.log(username, password);
-    
-        navigate('/welcome-page');
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+
+            const user = await response.json();
+            dispatch(setUser(user)); // Dispatch setUser action with user object from backend
+            console.log(username, password);
+            navigate('/welcome-page');
+        } catch (error) {
+            console.error('Login error:', error);
+            // Handle login error (e.g., show error message to user)
+        }
     };
 
     return (
