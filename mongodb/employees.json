@@ -1,1 +1,164 @@
-[{"_id":{"$oid":"66916d10e7e451ad52117b7b"},"name":"John Doe","phone":"+1234567890","job_role":"Software Engineer","work_location":"New York","salary":100000},{"_id":{"$oid":"66916d10e7e451ad52117b7c"},"name":"Jane Smith","phone":"+1987654321","job_role":"Data Scientist","work_location":"San Francisco","salary":120000},{"_id":{"$oid":"66916d10e7e451ad52117b7d"},"name":"Michael Johnson","phone":"+1654321897","job_role":"Product Manager","work_location":"Seattle","salary":110000},{"_id":{"$oid":"66916d10e7e451ad52117b7e"},"name":"Emily Brown","phone":"+1765432987","job_role":"UX Designer","work_location":"Austin","salary":95000},{"_id":{"$oid":"66916d10e7e451ad52117b7f"},"name":"David Lee","phone":"+1876543210","job_role":"Marketing Manager","work_location":"Chicago","salary":105000}]
+[
+    {
+        "_id": "1",
+        "name": "Jeff",
+        "phone": "+1122334455",
+        "job_role": "Manager",
+        "work_location": "New York",
+        "salary": 100000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "3",
+        "name": "James",
+        "phone": "+1987654321",
+        "job_role": "Employee",
+        "work_location": "Chicago",
+        "salary": 80000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "2",
+        "name": "Grace",
+        "phone": "+1765432890",
+        "job_role": "HR",
+        "work_location": "Los Angeles",
+        "salary": 90000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "20",
+        "name": "Emily",
+        "phone": "+1987654321",
+        "job_role": "Director",
+        "work_location": "Los Angeles",
+        "salary": 120000,
+        "manager_id": "4"
+    },
+    {
+        "_id": "21",
+        "name": "Michael",
+        "phone": "+1654321897",
+        "job_role": "Engineer",
+        "work_location": "San Francisco",
+        "salary": 90000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "4",
+        "name": "Sarah",
+        "phone": "+1765432987",
+        "job_role": "Designer",
+        "work_location": "Chicago",
+        "salary": 85000,
+        "manager_id": "4"
+    },
+    {
+        "_id": "5",
+        "name": "James",
+        "phone": "+1234567890",
+        "job_role": "Analyst",
+        "work_location": "New York",
+        "salary": 95000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "6",
+        "name": "Emily",
+        "phone": "+1888777666",
+        "job_role": "Developer",
+        "work_location": "Seattle",
+        "salary": 100000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "7",
+        "name": "David",
+        "phone": "+1444333222",
+        "job_role": "Manager",
+        "work_location": "Boston",
+        "salary": 110000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "8",
+        "name": "David",
+        "phone": "+1555666777",
+        "job_role": "Engineer",
+        "work_location": "Austin",
+        "salary": 95000,
+        "manager_id": "5"
+    },
+    {
+        "_id": "9",
+        "name": "Alex",
+        "phone": "+1666777888",
+        "job_role": "Designer",
+        "work_location": "Denver",
+        "salary": 90000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "10",
+        "name": "Emily",
+        "phone": "+1999888777",
+        "job_role": "Analyst",
+        "work_location": "Miami",
+        "salary": 92000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "11",
+        "name": "Mark",
+        "phone": "+1777666555",
+        "job_role": "HR Specialist",
+        "work_location": "San Diego",
+        "salary": 105000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "12",
+        "name": "Sophia",
+        "phone": "+1888999444",
+        "job_role": "Developer",
+        "work_location": "Portland",
+        "salary": 98000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "13",
+        "name": "John",
+        "phone": "+1999777666",
+        "job_role": "Analyst",
+        "work_location": "Houston",
+        "salary": 91000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "14",
+        "name": "Emily",
+        "phone": "+1444555666",
+        "job_role": "Engineer",
+        "work_location": "Dallas",
+        "salary": 96000,
+        "manager_id": "1"
+    },
+    {
+        "_id": "15",
+        "name": "Robert",
+        "phone": "+1888444333",
+        "job_role": "Designer",
+        "work_location": "Phoenix",
+        "salary": 88000,
+        "manager_id": "2"
+    },
+    {
+        "_id": "16",
+        "name": "Emily",
+        "phone": "+1999666555",
+        "job_role": "Analyst",
+        "work_location": "Atlanta",
+        "salary": 93000,
+        "manager_id": "2"
+    }    
+]

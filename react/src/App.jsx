@@ -17,6 +17,7 @@ import WelcomePage from "./components/WelcomePage";
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
 import EmployeeResult from "./components/EmployeeResult";
+import ViewEmployees from "./components/ViewEmployees"
 
 
 import './App.css'
@@ -37,6 +38,10 @@ function App() {
             <Route 
               path="/welcome-page" 
               element={<WelcomePage />} />
+
+            <Route 
+              path="/view-employees" 
+              element={<ViewEmployees />} />
 
             <Route 
               path="/search" 

@@ -1,28 +1,28 @@
 [
     {
-        "_id": "5fd23a3d5b4243ac6c5f9f8d",
+        "_id": "1",
         "username": "Jeff",
         "password": "12345",
         "email": "manager@example.com",
-        "roles": ["manager"],
+        "roles": "manager",
         "createdAt": "2023-07-15T10:00:00Z",
         "updatedAt": "2023-07-15T10:00:00Z"
     },
     {
-        "_id": "5fd23a3d5b4243ac6c5f9f8e",
+        "_id": "3",
         "username": "James",
         "password": "12345",
         "email": "employee@example.com",
-        "roles": ["employee"],
+        "roles": "employee",
         "createdAt": "2023-07-15T11:00:00Z",
         "updatedAt": "2023-07-15T11:00:00Z"
     },
     {
-        "_id": "5fd23a3d5b4243ac6c5f9f8f",
+        "_id": "2",
         "username": "Grace",
         "password": "12345",
         "email": "hr@example.com",
-        "roles": ["hr"],
+        "roles": "hr",
         "createdAt": "2023-07-15T12:00:00Z",
         "updatedAt": "2023-07-15T12:00:00Z"
     }
