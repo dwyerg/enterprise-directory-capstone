@@ -2,10 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Image from '../assets/placeholderimage.png'
 
 // Components
-import ManagerView from './ManagerView';
-import EmployeeView from './EmployeeView';
 
 function EmployeeResult() {
     const { id } = useParams();
@@ -71,25 +70,26 @@ function EmployeeResult() {
     const formattedSalary = formatSalary(employee.salary);
 
     return (
-        <div>
-            <h2>{employee.name}</h2>
-
+        <div className='employee-div'>
+            <h2 style={{ marginBottom: '5px' }}>{employee.name}</h2>
             <div>
-                <strong>Phone Number: </strong>{formattedPhoneNumber}
+                <i>{employee.job_role}</i>
+            </div>
+            <img 
+                src='https://media.istockphoto.com/id/1214428300/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=vftMdLhldDx9houN4V-g3C9k0xl6YeBcoB_Rk6Trce0=' 
+                className="result-image"
+            />
+            <div>
+                <strong>Phone: </strong>{formattedPhoneNumber}
             </div>
             <div>
-                <strong>Work Location: </strong>{employee.job_role}
-            </div>
-            <div>
-                <strong>Work Location: </strong>{employee.work_location}
+                <strong>Location: </strong>{employee.work_location}
             </div>
             {employee.salary !== undefined && (
             <div>
                 <strong>Salary: </strong>{formattedSalary}
             </div>
         )}
-            {/* {userRole === 'Manager' && <ManagerView employee={employee} />}
-            {userRole !== 'Manager' && <EmployeeView employee={employee} />} */}
         </div>
     );
 }

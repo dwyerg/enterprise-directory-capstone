@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // Components
 import Search from './Search';
+import Navigation from './Navigation';
 
 function WelcomePage() {
 
@@ -13,13 +14,10 @@ function WelcomePage() {
 
 
   return (
-    <div> 
-        <h2>Welcome {user.username}</h2>
+    <div>
+        <h3>Welcome <i>{user.username}</i></h3>
         <Search />
         <br />
-        {user.roles === 'manager' && (
-        <Link to="/view-employees">View Your Employees</Link>
-      )}
     </div>
   );
 };

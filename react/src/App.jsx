@@ -12,30 +12,26 @@ import store from './store'; // Ensure store is properly configured
 
 
 // Components
+import Navigation from "./components/Navigation";
 import LoginForm from "./components/LoginForm";
 import WelcomePage from "./components/WelcomePage";
 import Search from "./components/Search";
 import SearchResults from "./components/SearchResults";
 import EmployeeResult from "./components/EmployeeResult";
 import ViewEmployees from "./components/ViewEmployees"
-
+import ViewAllEmployees from "./components/ViewAllEmployees";
+import PredictForm from "./components/Predict";
 
 import './App.css'
-import PredictForm from "./components/Predict";
 
 function App() {
 
   return (
     <Provider store={store}>
       <Router>
-        <>
-        <Link to="/predict">
-            <button type="button" className="btn btn-primary">
-              Salary Predictor
-            </button>
-        </Link>
-        <h1>Enterprise Directory</h1>
-          
+      <div className="container">
+        
+        <Navigation />
           <Routes>
             <Route 
               exact path="/" 
@@ -48,6 +44,10 @@ function App() {
             <Route 
               path="/view-employees" 
               element={<ViewEmployees />} />
+            
+            <Route 
+              path="/view-all-employees" 
+              element={<ViewAllEmployees />} />
                 
             <Route 
               path="/predict" 
@@ -67,10 +67,10 @@ function App() {
             
             </Routes>
         
-        </>
+        </div>
       </Router>
     </Provider>
   )
 }
 
-export default App
+export default App;

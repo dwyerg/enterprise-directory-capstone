@@ -39,12 +39,18 @@ function LoginForm() {
 
     return (
         <div className="container">
+            <nav className="navbar">
+                <h1 className="navbar-brand">ENTERPRISE DIRECTORY</h1>
+            </nav>
+            <br />
+            <br />
+
             <form onSubmit={handleLogin} className="mt-5">
                 <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username"></label>
                     <input
                         type="text"
-                        className="form-control"
+                        className="form-control rounded-lg py-2 px-3"
                         id="username"
                         placeholder="Enter username"
                         value={username}
@@ -52,17 +58,17 @@ function LoginForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password"></label>
                     <input
                         type="password"
-                        className="form-control"
+                        className="form-control rounded-lg py-2 px-3"
                         id="password"
                         placeholder="Password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="submit" className="login-button">Login</button>
             </form>
         </div>
     );

@@ -31,18 +31,23 @@ function SearchResults() {
     return (
         <div>
             <h2>Search Results</h2>
-            <ul style={{ listStyleType: 'none', padding: 0 }}> {/* Inline CSS */}
-                {searchResults.map((item) => (
-                    <li key={item._id}>
-                        <div>
-                            <strong>Name: </strong><Link to={`/employee/${item._id}`}>{item.name}</Link> 
+            <div className="card-grid">
+                {searchResults.map((employee) => (
+                    <Link key={employee._id} to={`/employee/${employee._id}`} className="card">
+                        <div className="card-content">
+                        <img 
+                            src='https://media.istockphoto.com/id/1214428300/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=vftMdLhldDx9houN4V-g3C9k0xl6YeBcoB_Rk6Trce0=' 
+                            alt="Employee" 
+                            className="employee-image"
+                        />
+                            <div className="employee-details">
+                                <h4>{employee.name}</h4>
+                                <p>{employee.job_role} - {employee.work_location}</p>
+                            </div>
                         </div>
-                        <div>
-                            <strong>Work Location: </strong> {item.work_location}
-                        </div>
-                    </li>
+                    </Link>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function ViewEmployees() {
+function ViewAllEmployees() {
 
     const { user } = useSelector(state => state.user); // Assuming Redux state has user information
     const [employees, setEmployees] = useState([]);
@@ -12,7 +12,7 @@ function ViewEmployees() {
         // Fetch employees based on the manager's ID
         const fetchEmployees = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/employees?managerId=${user._id}`, {
+                const response = await fetch(`http://localhost:3000/all-employees`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ function ViewEmployees() {
 
     return (
         <div>
-            <h3>My Employees</h3>
+            <h3>All Employees</h3>
             <div className="card-grid">
                 {employees.map(employee => (
                     <Link key={employee._id} to={`/employee/${employee._id}`} className="card">
@@ -60,4 +60,4 @@ function ViewEmployees() {
     );
 }
 
-export default ViewEmployees;
+export default ViewAllEmployees;

@@ -31,27 +31,29 @@ const PredictForm = () => {
 
     return (
         <div>
-            <h2>Predict Salary</h2>
+            <h3>Predict Salary</h3>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Role:</label>
                     <input
+                        className="form-control rounded-lg py-2 px-3"
                         type="text"
                         value={role}
+                        placeholder='Role'
                         onChange={(e) => setRole(e.target.value)}
                         required
                     />
                 </div>
                 <div>
-                    <label>Location:</label>
                     <input
+                        className="form-control rounded-lg py-2 px-3"
                         type="text"
                         value={location}
+                        placeholder='Location'
                         onChange={(e) => setLocation(e.target.value)}
                         required
                     />
                 </div>
-                <button type="submit">Predict Salary</button>
+                <button className="form-submit" type="submit">Generate</button>
             </form>
             {predictedSalary !== null && (
                 <div>

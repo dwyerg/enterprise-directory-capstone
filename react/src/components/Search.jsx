@@ -41,14 +41,14 @@ const Search = () => {
     return (
         <form className="d-flex" role="search" onSubmit={handleSubmit}>
             <input
-                className="form-control me-2"
+                className="form-control rounded-lg py-2 px-3"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
                 value={searchTerm}
                 onChange={handleChange}
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="form-submit" type="submit">
                 Search
             </button>
         </form>
