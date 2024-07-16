@@ -2,6 +2,8 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserCircle, faKey } from '@fortawesome/free-solid-svg-icons';
 
 // Reducer imports
 import { setUser } from '../reducers/userReducer';
@@ -45,9 +47,11 @@ function LoginForm() {
             <br />
             <br />
 
-            <form onSubmit={handleLogin} className="mt-5">
+            <form onSubmit={handleLogin} id="form" className="mt-5">
                 <div className="form-group">
+                    <FontAwesomeIcon icon={faUserCircle} />
                     <label htmlFor="username"></label>
+                    
                     <input
                         type="text"
                         className="form-control rounded-lg py-2 px-3"
@@ -58,6 +62,7 @@ function LoginForm() {
                     />
                 </div>
                 <div className="form-group">
+                    <FontAwesomeIcon icon={faKey} />
                     <label htmlFor="password"></label>
                     <input
                         type="password"

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -39,7 +41,8 @@ const Search = () => {
     };
 
     return (
-        <form className="d-flex" role="search" onSubmit={handleSubmit}>
+        <form id="form" className="d-flex" role="search" onSubmit={handleSubmit}>
+            <FontAwesomeIcon icon={faSearch} />
             <input
                 className="form-control rounded-lg py-2 px-3"
                 type="search"
@@ -48,6 +51,7 @@ const Search = () => {
                 value={searchTerm}
                 onChange={handleChange}
             />
+            <br></br>
             <button className="form-submit" type="submit">
                 Search
             </button>

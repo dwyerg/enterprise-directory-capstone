@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faIdCard, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 const PredictForm = () => {
     const [role, setRole] = useState('');
@@ -31,9 +33,10 @@ const PredictForm = () => {
 
     return (
         <div>
-            <h3>Predict Salary</h3>
-            <form onSubmit={handleSubmit}>
-                <div>
+            
+            <form id="form" onSubmit={handleSubmit}>
+            <h2>Predict Salary</h2>
+                <div><FontAwesomeIcon icon={faIdCard} />
                     <input
                         className="form-control rounded-lg py-2 px-3"
                         type="text"
@@ -43,7 +46,7 @@ const PredictForm = () => {
                         required
                     />
                 </div>
-                <div>
+                <div><FontAwesomeIcon icon={faGlobe} />
                     <input
                         className="form-control rounded-lg py-2 px-3"
                         type="text"
